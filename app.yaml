@@ -12,4 +12,4 @@ handlers:
 #   upload: www/()
 # script handlers
 - url: .*
-  script: website.py
+  script: website/__init__.py
