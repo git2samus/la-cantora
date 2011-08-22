@@ -1,6 +1,7 @@
-from google.appengine.ext.webapp import RequestHandler
+from google.appengine.ext.webapp import RequestHandler, template
 
 class WebsiteHandler(RequestHandler):
     def get(self):
-        self.response.out.write('Hello world!')
+        page = template.render('templates/index.html', {})
+        self.response.out.write(page)
 
