@@ -10,6 +10,6 @@ class WebsiteHandler(RequestHandler):
         if q:
             result = youtube.search(q, restrict=request.remote_addr)
 
-        page = template.render('templates/index.html', context_dict(locals(), 'result'))
+        page = template.render('templates/index.html', context_dict(locals(), 'q', 'result'))
         response.out.write(page)
 

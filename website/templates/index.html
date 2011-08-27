@@ -2,11 +2,11 @@
 
 {% block main %}
   <form method="get" action=".">
-    <input type="text" name="q">
+    <input type="text" name="q" value="{{ q }}">
     <input type="submit">
   </form>
   {% if result %}
     <hr>
-    <pre>{{ result }}</pre>
+    {{ result|safe }}
   {% endif %}
 {% endblock %}
