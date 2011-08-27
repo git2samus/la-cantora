@@ -1,6 +1,8 @@
 # global settings (versioned)
 from os import path
 
+DEBUG = False
+
 # YOUTUBE_API_KEY = ''
 
 # sensitive and deploy-specific settings (untracked)

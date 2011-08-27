@@ -6,12 +6,13 @@ use_library('django', '1.2')
 from google.appengine.ext.webapp import WSGIApplication
 from google.appengine.ext.webapp.util import run_wsgi_app
 from website.views import WebsiteHandler
+import settings
 
 def main():
     urlpatterns = [
         ('/', WebsiteHandler)
     ]
-    application = WSGIApplication(urlpatterns, debug=True)
+    application = WSGIApplication(urlpatterns, debug=settings.DEBUG)
     run_wsgi_app(application)
 
 
