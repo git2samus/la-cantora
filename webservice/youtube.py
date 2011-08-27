@@ -1,21 +1,17 @@
-from urllib import urlencode
-from urllib2 import Request, urlopen
+from gdata.youtube.service import YouTubeService, YouTubeVideoQuery
+from gdata.alt.appengine import run_on_appengine
 import settings
 
 def search(q, restrict=None):
-    query_string_dict = {
-        'q': q,
-        'v': 2,
-    }
+    yt_service = YouTubeService()
+    run_on_appengine(yt_service)
+
+    yt_service.ssl = True
+    yt_service.developer_key = settings.YOUTUBE_API_KEY
+
+    query = YouTubeVideoQuery()
+    query.vq = q
     if restrict:
-        query_string_dict.update(restrict=restrict)
+        query.restriction = restrict
 
-    endpoint = 'https://gdata.youtube.com/feeds/api/videos'
-    query_string = urlencode(query_string_dict)
-
-    request = Request('%s?%s' % (endpoint, query_string))
-    request.add_header('X-GData-Key', 'key=%s' % settings.YOUTUBE_API_KEY)
-
-    response = urlopen(request)
-    return response.read()
-
+    return yt_service.YouTubeQuery(query)
